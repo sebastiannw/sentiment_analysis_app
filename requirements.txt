@@ -1,0 +1,11 @@
+pylint
+pytest
+black
+pytest-cov
+torch
+nltk
+neural_net
+pandas
+numpy
+requests
+pdb
