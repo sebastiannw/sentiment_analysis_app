@@ -1,1 +1,2 @@
 Sentiment_LSTM filter=lfs diff=lfs merge=lfs -text
+Sentiment_LSTM_dictionary filter=lfs diff=lfs merge=lfs -text
