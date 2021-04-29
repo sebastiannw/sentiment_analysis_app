@@ -13,7 +13,7 @@ from collections import Counter
 from nltk import word_tokenize
 
 def save_word2int(word2int):
-    filename = os.path.join(os.getcwd(), '..', 'Data', 'word2int_2')
+    filename = os.path.join('..', 'data', 'word2int_2')
     with open(filename, 'w') as f:
         f.write(json.dumps(word2int))
 

@@ -10,9 +10,3 @@ requests
 flask
 flask-cors
 locust
-typing
-string
-argparse
-json
-re
-os

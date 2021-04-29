@@ -26,8 +26,8 @@ warnings.filterwarnings('ignore')
 def main() -> pd.DataFrame:
 
     # Import data -> to be substituted for data to be trained with
-    train = pd.read_csv(os.path.join(os.getcwd(), '..', 'Data', 'train.csv'))
-    test  = pd.read_csv(os.path.join(os.getcwd(), '..', 'Data', 'test.csv'))
+    train = pd.read_csv(os.path.join(os.getcwd(), 'data', 'train.csv'))
+    test  = pd.read_csv(os.path.join(os.getcwd(), 'data', 'test.csv'))
 
     # Preprocess text
     train = text_preprocessing(train, text_column='text')

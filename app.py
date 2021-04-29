@@ -1,8 +1,13 @@
 from flask_cors import CORS, cross_origin
 from flask import Flask, request, jsonify
+import sys
+
+sys.path.insert(0, 'code/')
+from predict import main
+
 app = Flask(__name__)
 cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+#app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
 def hello():
@@ -10,12 +15,12 @@ def hello():
     print("I am inside hello world")
     return 'Hello World! CD'
 
-@app.route("/analyze/<review>", methods=["GET"])
-@cross_origin
+@app.route("/predict/<review>", methods=["GET"])
+#@cross_origin
 def predict(review):
-    print(f"This was placed in the url: new-{name}")
-    val = {"new-name": name}
-    return jsonify(val)
+    print(review)
+    score = main(review)
+    return jsonify({"reviewValue": score})
 
 
 if __name__ == '__main__':

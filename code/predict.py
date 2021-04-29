@@ -21,7 +21,7 @@ import torch.nn.functional as F
 def main(review: str) -> int:
     
     # Load word dictionary
-    word2int = load_word2int(os.path.join(os.getcwd(), '..', 'data', 'word2int'))
+    word2int = load_word2int(os.path.join(os.getcwd(), 'data', 'word2int'))
     vocabulary = len(word2int) + 1
 
     # Creating a model instance
@@ -29,7 +29,7 @@ def main(review: str) -> int:
     device = torch.device('cpu')
 
     # Loading the State Dictionary into the model instance
-    PATH = os.path.join(os.getcwd(), '..', 'models', 'Sentiment_LSTM_dictionary')
+    PATH = os.path.join(os.getcwd(), 'models', 'Sentiment_LSTM_dictionary')
     lstm.load_state_dict(torch.load(PATH, map_location=device))
     lstm.eval()
 
