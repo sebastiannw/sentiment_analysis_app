@@ -8,4 +8,5 @@ pandas
 numpy
 requests
 flask
+flask-cors
 locust
