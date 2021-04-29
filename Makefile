@@ -1,6 +1,6 @@
 install:
 	pip install --upgrade pip &&\
-	pip --no-cache-dir install -r requirements.txt
+	pip install -r requirements.txt
     
 format:
 	black *.py
