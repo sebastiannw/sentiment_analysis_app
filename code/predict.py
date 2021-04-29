@@ -31,10 +31,6 @@ def main(review: str) -> int:
     # Loading the State Dictionary into the model instance
     PATH = os.path.join(os.getcwd(), '..', 'models', 'Sentiment_LSTM_dictionary')
     lstm.load_state_dict(torch.load(PATH, map_location=device))
-    #lstm.load_state_dict(torch.load(PATH))
-
-    # Setting the model to predict
-    #lstm.to('cpu')
     lstm.eval()
 
     # Preprocessing the review string

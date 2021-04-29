@@ -41,13 +41,14 @@ def dictionary_mapping(train: pd.DataFrame, test: pd.DataFrame):
     word_count    = Counter(words)
     frequent_sort = word_count.most_common(len(words))
     word2int = {w: i + 1 for i, (w, _) in enumerate(frequent_sort)}
+    word2int['UNKNOWN_TOKEN'] = len(word2int) + 1
     return word2int, word4review
     
 def pad(data: List[str], seq_length: int) -> List[str]:
     features = np.zeros((len(data), seq_length))
     
     for i, review in enumerate(data):      
-        words = len(review)    
+        words = len(review)
         if words < seq_length:
             padding    = list(np.zeros(seq_length-words))
             new_review = padding + review    
@@ -75,10 +76,11 @@ def one_dim_pad(review: List[str], seq_length:int = 500) -> np.array:
 
 def one_dim_text_processing(review: str, word_dictionary: Dict[str, int]) -> np.array:
     '''Cleans & Preprocesses a single string for the LSTM'''
+    #pdb.set_trace()
+    UNK_TKN = len(word_dictionary)
     review = review.lower()
     review = ''.join([ch for ch in review if ch not in punctuation])
     review = word_tokenize(review)
-    review = [word_dictionary[word] for word in review]
+    review = [word_dictionary.get(word, UNK_TKN) for word in review]
     review = one_dim_pad(review, 500)
     return torch.Tensor(review)
-    
