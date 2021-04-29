@@ -21,14 +21,14 @@ import torch.nn.functional as F
 def main(review: str) -> int:
     
     # Load word dictionary
-    word2int = load_word2int(os.path.join(os.getcwd(), '..', 'Data', 'word2int'))
+    word2int = load_word2int(os.path.join(os.getcwd(), '..', 'data', 'word2int'))
     vocabulary = len(word2int) + 1
 
     # Creating a model instance
     lstm = LSTM(vocabulary, n_output=1, n_embedding=500, n_hidden=1028, n_layers=2)
 
     # Loading the State Dictionary into the model instance
-    PATH = os.path.join(os.getcwd(), '..', 'Models', 'Sentiment_LSTM')
+    PATH = os.path.join(os.getcwd(), '..', 'models', 'Sentiment_LSTM')
     lstm.load_state_dict(torch.load(PATH))
 
     # Setting the model to predict
@@ -52,7 +52,7 @@ if __name__=="__main__":
 
     args = parser.parse_args()
 
-    PATH = os.path.join(os.getcwd(), '..', 'Models', 'Sentiment_LSTM')
+    PATH = os.path.join(os.getcwd(), '..', 'models', 'Sentiment_LSTM')
 
     sentiment = main(args.r)
     print(sentiment)
