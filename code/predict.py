@@ -26,13 +26,15 @@ def main(review: str) -> int:
 
     # Creating a model instance
     lstm = LSTM(vocabulary, n_output=1, n_embedding=500, n_hidden=1028, n_layers=2)
+    device = torch.device('cpu')
 
     # Loading the State Dictionary into the model instance
-    PATH = os.path.join(os.getcwd(), '..', 'models', 'Sentiment_LSTM')
-    lstm.load_state_dict(torch.load(PATH))
+    PATH = os.path.join(os.getcwd(), '..', 'models', 'Sentiment_LSTM_dictionary')
+    lstm.load_state_dict(torch.load(PATH, map_location=device))
+    #lstm.load_state_dict(torch.load(PATH))
 
     # Setting the model to predict
-    lstm.to('cpu')
+    #lstm.to('cpu')
     lstm.eval()
 
     # Preprocessing the review string
@@ -42,17 +44,15 @@ def main(review: str) -> int:
     hidden = lstm.init_hidden(1)
     sentiment, _ = lstm(review.long(), hidden)
 
-    return sentiment
+    return sentiment.detach().numpy()[0]
 
 
 if __name__=="__main__":
 
-    parser = argparse.ArgumentParser(description='Implied Volatility values in a given week.')
+    parser = argparse.ArgumentParser()
     parser.add_argument('--r', type=str, help='Review on which sentiment analysis will be performed.')
 
     args = parser.parse_args()
-
-    PATH = os.path.join(os.getcwd(), '..', 'models', 'Sentiment_LSTM')
 
     sentiment = main(args.r)
     print(sentiment)
