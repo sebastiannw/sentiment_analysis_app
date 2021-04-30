@@ -9,6 +9,8 @@ import argparse
 import json
 import re
 import os
+import nltk
+nltk.download('punkt')
 
 #Torch Packages
 from   torch.autograd import Variable

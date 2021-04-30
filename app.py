@@ -20,7 +20,7 @@ def hello():
 def predict(review):
     print(review)
     score = main(review)
-    return jsonify({"reviewValue": score})
+    return jsonify({"reviewValue": str(score), "review": str(review)})
 
 
 if __name__ == '__main__':
