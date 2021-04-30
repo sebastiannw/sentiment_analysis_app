@@ -13,7 +13,7 @@ cors = CORS(app)
 def hello():
     """Return a friendly HTTP greeting."""
     print("I am inside hello world")
-    return 'Hello World! CD'
+    return 'sentiment_analysis_app is working!'
 
 @app.route("/predict/<review>", methods=["GET"])
 #@cross_origin
